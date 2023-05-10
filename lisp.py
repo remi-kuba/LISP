@@ -1,50 +1,21 @@
-"""
-6.1010 Spring '23 Lab 12: LISP Interpreter Part 2
-"""
-#!/usr/bin/env python3
 import sys
 import traceback
 sys.setrecursionlimit(20_000)
 
-# NO ADDITIONAL IMPORTS!
-
-#############################
-# Scheme-related Exceptions #
-#############################
-
 
 class SchemeError(Exception):
-    """
-    A type of exception to be raised if there is an error with a Scheme
-    program.  Should never be raised directly; rather, subclasses should be
-    raised.
-    """
-
     pass
 
 
 class SchemeSyntaxError(SchemeError):
-    """
-    Exception to be raised when trying to evaluate a malformed expression.
-    """
-
     pass
 
 
 class SchemeNameError(SchemeError):
-    """
-    Exception to be raised when looking up a name that has not been defined.
-    """
-
     pass
 
 
 class SchemeEvaluationError(SchemeError):
-    """
-    Exception to be raised if there is an error during evaluation other than a
-    SchemeNameError.
-    """
-
     pass
 
 
@@ -57,15 +28,6 @@ def number_or_symbol(value):
     """
     Helper function: given a string, convert it to an integer or a float if
     possible; otherwise, return the string itself
-
-    >>> number_or_symbol('8')
-    8
-    >>> number_or_symbol('-5.32')
-    -5.32
-    >>> number_or_symbol('1.2.3.4')
-    '1.2.3.4'
-    >>> number_or_symbol('x')
-    'x'
     """
     try:
         return int(value)
@@ -494,11 +456,6 @@ def repl(verbose=False, f1 = None):
 
  
 if __name__ == "__main__":
-    # code in this block will only be executed if lab.py is the main file being
-    # run (not when this module is imported)
-    
-    # uncommenting the following line will run doctests from above
-    # doctest.testmod()
     if len(sys.argv) > 1:
         print("here", sys.argv)
         answer, frame = evaluate_files(sys.argv[1:])
